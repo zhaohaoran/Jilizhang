@@ -44,7 +44,6 @@ public class AddRecord extends Activity {
     EditText personNameEditTxt;
     EditText amountEditTxt;
     Spinner selectPersonSpinner;
-
     RadioGroup fromWhomRG;
     RadioButton noFromMeRB;
     RadioButton fromMeRB;
