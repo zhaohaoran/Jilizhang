@@ -183,7 +183,8 @@ public class ByPerson extends Activity {
         //SQLiteDatabase dbByPerson = openOrCreateDatabase("jilizhang.db", Context.MODE_PRIVATE, null);
         //String args[] = {dbHelper.PERSON};
         // dbHelper.onCreate(db);
-        Cursor c1 = db.rawQuery("SELECT DISTINCT " + dbHelper.PERSON + " FROM " + dbHelper.TBNAME, null); //执行本地SQL语句查询
+        //get all the distinct involved person
+        Cursor c1 = db.rawQuery("SELECT DISTINCT " + dbHelper.PERSON + " FROM " + dbHelper.TBNAME +" ORDER BY "+ dbHelper.PERSON, null); //执行本地SQL语句查询
         c1.moveToFirst();
         while (!c1.isAfterLast()) {
             int index = c1.getColumnIndex(dbHelper.PERSON);
@@ -308,6 +309,7 @@ public class ByPerson extends Activity {
             holder.recordAmount.setText((String) mData.get(position).get("recordAmount"));
             holder.date.setText((String) mData.get(position).get("date"));
             holder.personName.setText((String) mData.get(position).get("personName"));
+            holder.personName.setSelected(true);
 
             if (1 == (int) mData.get(position).get("ifFromMe")) {
                 holder.recordAmount.setTextColor(Color.rgb(0xEE, 0x00, 0x00));
@@ -360,6 +362,7 @@ public class ByPerson extends Activity {
             if (convertView != null) {
                 TextView _TextView1 = (TextView) convertView.findViewById(R.id.noImageSpinnerItem);
                 _TextView1.setText(mList.get(position));
+               // _TextView1.setSelected(true);
             }
             return convertView;
         }

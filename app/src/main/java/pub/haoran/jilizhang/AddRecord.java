@@ -171,7 +171,7 @@ public class AddRecord extends Activity {
         SQLiteDatabase db = openOrCreateDatabase("jilizhang.db", Context.MODE_PRIVATE, null);
         //String args[] = {dbHelper.PERSON};
         dbHelper.onCreate(db);
-        Cursor c = db.rawQuery("SELECT DISTINCT "+dbHelper.PERSON+" FROM "+dbHelper.TBNAME, null); //执行本地SQL语句查询
+        Cursor c = db.rawQuery("SELECT DISTINCT "+dbHelper.PERSON+" FROM "+dbHelper.TBNAME+" ORDER BY "+ dbHelper.PERSON, null); //执行本地SQL语句查询
         c.moveToFirst();
         while(!c.isAfterLast()){
             int index = c.getColumnIndex(dbHelper.PERSON);
@@ -260,6 +260,7 @@ public class AddRecord extends Activity {
             {
                 TextView _TextView1=(TextView)convertView.findViewById(R.id.personNameSpinnerItem);
                 _TextView1.setText(mList.get(position));
+                //_TextView1.setSelected(true);
             }
             return convertView;
         }

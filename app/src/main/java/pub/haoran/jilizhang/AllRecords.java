@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,7 +31,7 @@ import pub.haoran.jilizhang.util.DBHelper;
 public class AllRecords extends Activity {
     private List<Map<String, Object>> mData;
     private ListView lv;
-    private TextView Txtv;
+    private TextView Txtv,TotalBalanceTv;
     DBHelper dbHelper;
     TextView recordAmount;
     MyAdapter adapter;
@@ -83,6 +84,10 @@ public class AllRecords extends Activity {
         String amountStr;
         int ifFromMe;
 
+        BigDecimal sumBD = BigDecimal.ZERO;
+        BigDecimal next = BigDecimal.ZERO;
+
+
         Cursor c = db.rawQuery("SELECT * FROM "+dbHelper.TBNAME, null); //执行本地SQL语句查询
         c.moveToFirst();
         while(!c.isAfterLast()){
@@ -102,11 +107,20 @@ public class AllRecords extends Activity {
             index = c.getColumnIndex(dbHelper.AMOUNT);
             amountStr = c.getString(index);
 
+            try{
+                next = new BigDecimal(amountStr);
+
+            }catch (NumberFormatException e){
+
+            }
+
             if(0==ifFromMe){
+                sumBD = sumBD.add(next);
                 amountStr = "In "+amountStr;
                 //recordAmount.setTextColor(Color.GREEN);
             }
             else if(1==ifFromMe){
+                sumBD = sumBD.subtract(next);
                 amountStr = "Out "+amountStr;
                 //recordAmount.setTextColor(Color.RED);
             }
@@ -118,6 +132,20 @@ public class AllRecords extends Activity {
 
             c.moveToNext();
         }
+
+        TotalBalanceTv = (TextView)findViewById(R.id.totalBalance_TV);
+
+        if (0 < sumBD.signum()) {
+            TotalBalanceTv.setText("Your total balance is $" + sumBD.abs());
+        } else if (0 > sumBD.signum()) {
+            TotalBalanceTv.setText("Your total balance is -$" + sumBD.abs());
+        } else {
+            TotalBalanceTv.setText("Your total balance is $" + sumBD.abs());
+        }
+
+
+
+
         lv = (ListView)findViewById(R.id.MyListView);
         Txtv = (TextView)findViewById(R.id.NoRecordTxt);
 
@@ -133,6 +161,8 @@ public class AllRecords extends Activity {
             lv.setVisibility(View.INVISIBLE);
             Txtv.setVisibility(View.VISIBLE);
         }
+
+
 
     }
 
@@ -205,6 +235,7 @@ public class AllRecords extends Activity {
             holder.recordAmount.setText((String)mData.get(position).get("recordAmount"));
             holder.date.setText((String)mData.get(position).get("date"));
             holder.personName.setText((String)mData.get(position).get("personName"));
+            holder.personName.setSelected(true);
 
             if(1 == (int)mData.get(position).get("ifFromMe")){
                 holder.recordAmount.setTextColor(Color.rgb(0xEE,0x00,0x00));
@@ -258,6 +289,10 @@ public class AllRecords extends Activity {
                                     //System.out.println(time+"");
                                     String amountStr;
                                     int ifFromMe;
+
+                                    BigDecimal sumBD = BigDecimal.ZERO;
+                                    BigDecimal next = BigDecimal.ZERO;
+
                                     List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 
                                     Cursor c = db.rawQuery("SELECT * FROM "+dbHelper.TBNAME, null); //执行本地SQL语句查询
@@ -279,11 +314,21 @@ public class AllRecords extends Activity {
                                         index = c.getColumnIndex(dbHelper.AMOUNT);
                                         amountStr = c.getString(index);
 
+                                        try{
+                                            next = new BigDecimal(amountStr);
+
+                                        }catch (NumberFormatException e){
+
+                                        }
+
+
                                         if(0==ifFromMe){
+                                            sumBD = sumBD.add(next);
                                             amountStr = "In "+amountStr;
                                             //recordAmount.setTextColor(Color.GREEN);
                                         }
                                         else if(1==ifFromMe){
+                                            sumBD = sumBD.subtract(next);
                                             amountStr = "Out "+amountStr;
                                             //recordAmount.setTextColor(Color.RED);
                                         }
@@ -295,6 +340,18 @@ public class AllRecords extends Activity {
 
                                         c.moveToNext();
                                     }
+
+
+                                    TotalBalanceTv = (TextView)findViewById(R.id.totalBalance_TV);
+
+                                    if (0 < sumBD.signum()) {
+                                        TotalBalanceTv.setText("Your total balance is $" + sumBD.abs());
+                                    } else if (0 > sumBD.signum()) {
+                                        TotalBalanceTv.setText("Your total balance is -$" + sumBD.abs());
+                                    } else {
+                                        TotalBalanceTv.setText("Your total balance is $" + sumBD.abs());
+                                    }
+
 
                                     mData = list;
 
