@@ -1,4 +1,4 @@
-package pub.haoran.jilizhang;
+package net.haoranzhao.jilizhang;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -30,7 +30,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import pub.haoran.jilizhang.util.DBHelper;
+import net.haoranzhao.jilizhang.util.DBHelper;
 
 
 public class ByPerson extends Activity {

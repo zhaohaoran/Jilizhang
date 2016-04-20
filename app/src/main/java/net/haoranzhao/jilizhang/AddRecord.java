@@ -1,4 +1,4 @@
-package pub.haoran.jilizhang;
+package net.haoranzhao.jilizhang;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -33,7 +33,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import pub.haoran.jilizhang.util.DBHelper;
+import net.haoranzhao.jilizhang.util.DBHelper;
 
 
 public class AddRecord extends Activity {

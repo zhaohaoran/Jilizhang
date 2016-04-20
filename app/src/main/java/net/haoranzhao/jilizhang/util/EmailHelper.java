@@ -1,4 +1,4 @@
-package pub.haoran.jilizhang.util;
+package net.haoranzhao.jilizhang.util;
 
 import android.content.Context;
 import android.content.Intent;
@@ -59,7 +59,8 @@ public class EmailHelper {
         emailIntent .putExtra(Intent.EXTRA_STREAM, path);
         //emailIntent.putExtra(Intent.EXTRA_CC, CC);
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Transaction records exported from Transaction Tracker.");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "The attached is the excel file of all records. \n\n" +
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "The attached is the excel file of all records. \n" +
+                                                "P.S. For the iffromme colomn in the table, 0 means someone gives you, 1 means you give out to someone.\n\n"+
                                                 "Thanks,\n" +
                                                 "Transaction Tracker");
 

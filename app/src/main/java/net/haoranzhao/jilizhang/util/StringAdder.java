@@ -1,4 +1,4 @@
-package pub.haoran.jilizhang.util;
+package net.haoranzhao.jilizhang.util;
 
 /**
  * Created by zhaohaoran on 6/11/15.

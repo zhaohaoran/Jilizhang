@@ -1,4 +1,4 @@
-package pub.haoran.jilizhang;
+package net.haoranzhao.jilizhang;
 
 import android.app.ActionBar;
 import android.app.TabActivity;

@@ -1,4 +1,4 @@
-package pub.haoran.jilizhang;
+package net.haoranzhao.jilizhang;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -20,8 +20,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
-import pub.haoran.jilizhang.util.DBHelper;
-import pub.haoran.jilizhang.util.EmailHelper;
+import net.haoranzhao.jilizhang.util.DBHelper;
+import net.haoranzhao.jilizhang.util.EmailHelper;
 
 public class ExportByEmail extends Activity {
     private static String TAG="EXPORT_BY_EMAIL";
