@@ -6,5 +6,6 @@
     <string name="title_activity_all_records">All Records</string>
     <string name="title_activity_by_person">Check by Person</string>
     <string name="title_activity_add_record">Add new record</string>
+    <string name="title_activity_export_by_email">ExportByEmail</string>
 
 </resources>

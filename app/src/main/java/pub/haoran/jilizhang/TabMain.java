@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
-import android.widget.Toast;
 
 
 public class TabMain extends TabActivity {
@@ -34,7 +33,7 @@ public class TabMain extends TabActivity {
 
 
         //第一个Tab
-                intent = new Intent(TabMain.this,AllRecords.class);//新建一个Intent用作Tab1显示的内容
+        intent = new Intent(TabMain.this,AllRecords.class);//新建一个Intent用作Tab1显示的内容
         spec = tabHost.newTabSpec("allRecords")//新建一个 Tab
                 .setIndicator("All records")//设置名称以及图标
                 .setContent(intent);//设置显示的intent，这里的参数也可以是R.id.xxx
@@ -64,7 +63,10 @@ public class TabMain extends TabActivity {
             case R.id.action_add_new:
                 Intent intent = new Intent(TabMain.this,AddRecord.class);
                 startActivity(intent);
-                Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.action_export_by_email:
+                Intent intent2 = new Intent(TabMain.this,ExportByEmail.class);
+                startActivity(intent2);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

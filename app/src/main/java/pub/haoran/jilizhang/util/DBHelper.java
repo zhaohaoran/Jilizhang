@@ -3,13 +3,23 @@ package pub.haoran.jilizhang.util;
 /**
  * Created by zhaohaoran on 6/10/15.
  */
+
 import android.content.ContentValues;
-        import android.content.Context;
-        import android.database.sqlite.SQLiteDatabase;
-        import android.database.sqlite.SQLiteDatabase.CursorFactory;
-        import android.database.sqlite.SQLiteOpenHelper;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteDatabase.CursorFactory;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.util.Date;
 
 public class DBHelper extends SQLiteOpenHelper {
+
+    private final String TAG = "DBHELPER";
 
     public static final String TBNAME = "records";
     public static final String ID = "_id";
@@ -17,6 +27,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String DATE = "date";
     public static final String AMOUNT = "amount";
     public static final String IFFROMME = "iffromme";
+
+    public static final String EXPORT_SUCCESS = "SUCCESS";
 
 
     public DBHelper(Context context, String name,
@@ -73,4 +85,70 @@ public class DBHelper extends SQLiteOpenHelper {
         this.getWritableDatabase().delete(
                 DBHelper.TBNAME, null, null);
     }
+
+    /*
+     * added 4/5/16
+     */
+    public String exportCSV(SQLiteDatabase db, Context mContext){
+        String infotext = "";
+        Cursor c;
+
+        try {
+            c = db.rawQuery("select * from "+this.TBNAME, null);
+            int rowcount = 0;
+            int colcount = 0;
+            //File outputDir = mContext.getFilesDir();
+            File outputDir = new File(mContext.getFilesDir(), "exported");
+            if (!outputDir.exists()) {
+                outputDir.mkdir();
+            }
+
+
+            long time= System.currentTimeMillis();
+            Date datetime = new Date(time);
+
+            String filename = "TransactionExports-"+datetime+".csv";
+            // the name of the file to export with
+            File saveFile = new File(outputDir, filename);
+            FileWriter fw = new FileWriter(saveFile);
+            BufferedWriter bw = new BufferedWriter(fw);
+            rowcount = c.getCount();
+            colcount = c.getColumnCount();
+            if (rowcount > 0) {
+                c.moveToFirst();
+                for (int i = 0; i < colcount; i++) {
+                    if (i != colcount - 1) {
+                        bw.write(c.getColumnName(i) + ",");
+                    } else {
+                        bw.write(c.getColumnName(i));
+                    }
+                }
+                bw.newLine();
+                for (int i = 0; i < rowcount; i++) {
+                    c.moveToPosition(i);
+                    for (int j = 0; j < colcount; j++) {
+                        if (j != colcount - 1)
+                            bw.write(c.getString(j) + ",");
+                        else
+                            bw.write(c.getString(j));
+                    }
+                    bw.newLine();
+                }
+                bw.flush();
+                infotext= this.EXPORT_SUCCESS+":"+filename;
+            }
+        } catch (Exception ex) {
+            if (db.isOpen()) {
+                db.close();
+                infotext=ex.getMessage().toString();
+                Log.d(TAG,infotext);
+            }
+        } finally {
+        }
+        return infotext;
+
+    }
+
+
+
 }

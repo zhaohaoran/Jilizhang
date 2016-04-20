@@ -50,7 +50,7 @@ public class AllRecords extends Activity {
 
 
         //打开或创建test.db数据库
-        db = openOrCreateDatabase("jilizhang.db", Context.MODE_PRIVATE, null);
+        db = openOrCreateDatabase(DBNAME, Context.MODE_PRIVATE, null);
         //db.execSQL("DROP TABLE IF EXISTS records");
         //创建records表
         //db.execSQL("CREATE TABLE records (_id INTEGER PRIMARY KEY AUTOINCREMENT, person TEXT not null, date TEXT not null, amount INTEGER, iffromme BLOB)");
