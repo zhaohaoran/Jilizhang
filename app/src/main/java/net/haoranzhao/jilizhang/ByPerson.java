@@ -24,13 +24,13 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import net.haoranzhao.jilizhang.util.DBHelper;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import net.haoranzhao.jilizhang.util.DBHelper;
 
 
 public class ByPerson extends Activity {
@@ -229,7 +229,7 @@ public class ByPerson extends Activity {
                 // Otherwise, set the URL to null.
                 Uri.parse("http://host/path"),
                 // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://pub.haoran.jilizhang/http/host/path")
+                Uri.parse("android-app://net.haoranzhao.jilizhang/http/host/path")
         );
         AppIndex.AppIndexApi.start(client, viewAction);
     }
@@ -248,7 +248,7 @@ public class ByPerson extends Activity {
                 // Otherwise, set the URL to null.
                 Uri.parse("http://host/path"),
                 // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://pub.haoran.jilizhang/http/host/path")
+                Uri.parse("android-app://net.haoranzhao.jilizhang/http/host/path")
         );
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();

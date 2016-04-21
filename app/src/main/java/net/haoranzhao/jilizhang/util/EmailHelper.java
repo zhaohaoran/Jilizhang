@@ -34,7 +34,7 @@ public class EmailHelper {
 
         File exportedPath = new File(mContext.getFilesDir(), "exported");
         File newFile = new File(exportedPath, filename);
-        Uri path = getUriForFile(mContext, "pub.haoran.jilizhang.fileprovider", newFile);
+        Uri path = getUriForFile(mContext, "net.haoranzhao.jilizhang.fileprovider", newFile);
 
         Log.d(TAG,path.toString());
 

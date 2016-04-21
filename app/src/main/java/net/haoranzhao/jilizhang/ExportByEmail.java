@@ -98,6 +98,9 @@ public class ExportByEmail extends Activity {
 
     //check the email format
     public boolean CheckEmailFormat(String emailAddress){
+
+        emailAddress.trim();
+
         if (emailAddress == null) {
             return false;
         } else {
