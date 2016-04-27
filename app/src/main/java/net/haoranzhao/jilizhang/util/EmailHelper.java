@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 
+import net.haoranzhao.jilizhang.R;
+
 import java.io.File;
 
 import static android.support.v4.content.FileProvider.getUriForFile;
@@ -58,14 +60,16 @@ public class EmailHelper {
         // the attachment
         emailIntent .putExtra(Intent.EXTRA_STREAM, path);
         //emailIntent.putExtra(Intent.EXTRA_CC, CC);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Transaction records exported from Transaction Tracker.");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "The attached is the excel file of all records. \n" +
-                                                "P.S. For the iffromme colomn in the table, 0 means someone gives you, 1 means you give out to someone.\n\n"+
-                                                "Thanks,\n" +
-                                                "Transaction Tracker");
+        String mailSubject = mContext.getResources().getString(R.string.mail_subject);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, mailSubject);
+        String mailText = mContext.getResources().getString(R.string.mail_text);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, mailText);
 
         try {
-            mContext.startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            // Get a string resource from your app's Resources
+            String sendingEmail = mContext.getResources().getString(R.string.Sending_e_mail);
+
+            mContext.startActivity(Intent.createChooser(emailIntent,sendingEmail));
             Log.i(TAG, "Finished sending email...");
             info=true;
         }

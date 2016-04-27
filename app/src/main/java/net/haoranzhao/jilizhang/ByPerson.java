@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +24,7 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import net.haoranzhao.jilizhang.util.DBHelper;
+import net.haoranzhao.jilizhang.util.LocaleHelper;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -50,6 +50,10 @@ public class ByPerson extends Activity {
 
     BigDecimal sumBD;
     BigDecimal next = BigDecimal.ZERO;
+
+
+    private String in, out, owe_you, you_owe, mutually_do_not_owe,$;
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -63,6 +67,12 @@ public class ByPerson extends Activity {
 
         who_owe_you = (TextView) findViewById(R.id.who_owe_you);
 
+
+        String languageSetup = JilizhangApplication.sharedPreferencesHelper.getString(JilizhangApplication.languageKey);
+        if(languageSetup!=null){
+            LocaleHelper.setLocale(this,languageSetup);
+        }
+
         dbHelper = new DBHelper(ByPerson.this, DBNAME, null, 1);
         db = openOrCreateDatabase("jilizhang.db", Context.MODE_PRIVATE, null);
         dbHelper.onCreate(db);
@@ -70,11 +80,27 @@ public class ByPerson extends Activity {
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+        in = getResources().getString(R.string.in);
+        out = getResources().getString(R.string.out);
+
+        owe_you = getResources().getString(R.string.owe_you);
+        you_owe = getResources().getString(R.string.you_owe);
+        mutually_do_not_owe = getResources().getString(R.string.mutually_do_not_owe);
+
+        $ = getResources().getString(R.string.$);
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
+
+            String languageSetup = JilizhangApplication.sharedPreferencesHelper.getString(JilizhangApplication.languageKey);
+            if(languageSetup!=null){
+                LocaleHelper.setLocale(this,languageSetup);
+            }
+
         List<String> fileList = new ArrayList<String>();
         list = new ArrayList<Map<String, Object>>();
 
@@ -130,11 +156,11 @@ public class ByPerson extends Activity {
 
                     if (0 == ifFromMe) {
                         sumBD = sumBD.add(next);
-                        amountStr = "In " + amountStr;
+                        amountStr = in + amountStr;
                         //recordAmount.setTextColor(Color.GREEN);
                     } else if (1 == ifFromMe) {
                         sumBD = sumBD.subtract(next);
-                        amountStr = "Out " + amountStr;
+                        amountStr = out + amountStr;
                         //recordAmount.setTextColor(Color.RED);
                     }
 
@@ -148,11 +174,11 @@ public class ByPerson extends Activity {
 
 
                 if (0 < sumBD.signum()) {
-                    who_owe_you.setText("You owe " + str + " $" + sumBD.abs());
+                    who_owe_you.setText(str+" " +owe_you + $ + sumBD.abs());
                 } else if (0 > sumBD.signum()) {
-                    who_owe_you.setText(str + " owe you" + " $" + sumBD.abs());
+                    who_owe_you.setText(you_owe+" " +str + $ + sumBD.abs());
                 } else {
-                    who_owe_you.setText(str + " and you mutually do not owe.");
+                    who_owe_you.setText(str + mutually_do_not_owe);
                 }
 
 
@@ -319,7 +345,6 @@ public class ByPerson extends Activity {
 
             //holder.deleteBtn.setTag(position);
             holder.deleteBtn.setOnClickListener(new deleteBtnListener(position));
-            Log.v("process:", "in42");
 
 
             return convertView;
@@ -384,14 +409,20 @@ public class ByPerson extends Activity {
             idStr = (String) mData.get(position).get("id");
             id = Integer.parseInt(idStr);
 
+            String really_delete = getResources().getString(R.string.really_delete);
+            String delete = getResources().getString(R.string.delete);
+            String yes = getResources().getString(R.string.yes);
+            String cancel = getResources().getString(R.string.cancel);
+
+
             new AlertDialog.Builder(ByPerson.this)
         /* 弹出窗口的最上头文字 */
-                    .setTitle("")
+                    .setTitle(delete)
         /* 设置弹出窗口的图式 */
                     .setIcon(R.drawable.trash_bin)
         /* 设置弹出窗口的信息 */
-                    .setMessage("Really want to delete？")
-                    .setPositiveButton("Yes",
+                    .setMessage(really_delete)
+                    .setPositiveButton(yes,
                             new DialogInterface.OnClickListener() {
                                 public void onClick(
                                         DialogInterface dialoginterface,
@@ -431,11 +462,11 @@ public class ByPerson extends Activity {
 
                                         if (0 == ifFromMe) {
                                             sumBD = sumBD.add(next);
-                                            amountStr = "In " + amountStr;
+                                            amountStr = in + amountStr;
                                             //recordAmount.setTextColor(Color.GREEN);
                                         } else if (1 == ifFromMe) {
                                             sumBD = sumBD.subtract(next);
-                                            amountStr = "Out " + amountStr;
+                                            amountStr = out + amountStr;
                                             //recordAmount.setTextColor(Color.RED);
                                         }
 
@@ -448,11 +479,11 @@ public class ByPerson extends Activity {
                                     }
 
                                     if (0 < sumBD.signum()) {
-                                        who_owe_you.setText("You owe " + str + " $" + sumBD.abs());
+                                        who_owe_you.setText(str+owe_you + $ + sumBD.abs());
                                     } else if (0 > sumBD.signum()) {
-                                        who_owe_you.setText(str + " owe you" + " $" + sumBD.abs());
+                                        who_owe_you.setText(you_owe+str+ $ + sumBD.abs());
                                     } else {
-                                        who_owe_you.setText(str + " and you mutually do not owe.");
+                                        who_owe_you.setText(str + mutually_do_not_owe);
                                     }
 
                                     mData = list;
@@ -479,18 +510,14 @@ public class ByPerson extends Activity {
                                 }
                             })
         /* 设置弹出窗口的返回事件 */
-                    .setNegativeButton("cancel",
+                    .setNegativeButton(cancel,
                             new DialogInterface.OnClickListener() {
                                 public void onClick(
                                         DialogInterface dialoginterface,
                                         int i) {
                                     //什么都不干
-
-
                                 }
                             }).show();
-
-            Log.v("process", "in delete");
 
         }
     }

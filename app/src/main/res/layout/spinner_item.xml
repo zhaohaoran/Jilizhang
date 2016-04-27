@@ -21,7 +21,6 @@
         android:layout_toRightOf="@+id/spinnerItem_IV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
         android:singleLine="true"
         android:maxWidth="200dp"
         android:textSize="20sp"

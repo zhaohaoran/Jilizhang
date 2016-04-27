@@ -27,7 +27,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="E-mail to send records to:"
+            android:text="@string/E_mail_to_send_records_to"
             />
         <EditText
             android:layout_width="wrap_content"
@@ -35,13 +35,13 @@
             android:id="@+id/email_ET"
             android:singleLine="true"
             android:textSize="20sp"
-            android:hint="Input the email here."/>
+            android:hint="@string/Input_the_email_here"/>
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/deleteAllRecord_CB"
-            android:text="Check to delete all records after export."/>
+            android:text="@string/Check_to_delete_all_records_after_export"/>
 
 
         </LinearLayout>

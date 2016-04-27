@@ -9,8 +9,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -22,6 +20,10 @@ import android.widget.ProgressBar;
 
 import net.haoranzhao.jilizhang.util.DBHelper;
 import net.haoranzhao.jilizhang.util.EmailHelper;
+import net.haoranzhao.jilizhang.util.LocaleHelper;
+import net.haoranzhao.jilizhang.util.OtherUtils;
+
+import java.io.IOException;
 
 public class ExportByEmail extends Activity {
     private static String TAG="EXPORT_BY_EMAIL";
@@ -30,14 +32,17 @@ public class ExportByEmail extends Activity {
     private EditText emailET;
     private ProgressBar exportingPB;
     private Button exportBTN;
-    private boolean ifDeleteAll;
 
     private String EmailAddress;
     private EmailHelper emailHelper;
+    private OtherUtils otherUtils;
 
     private DBHelper dbHelper;
     public static final String DBNAME = "jilizhang.db";
     SQLiteDatabase db;
+    private String filename;
+
+    private String delete_all, really_delete_all, error, email_format_error,ok,export_success,export_failed,no_email_client,yes,cancel,copy_to_root_failed;
 
     private static int SUCCESS=4,
             EMAIL_FAILED=3,
@@ -58,8 +63,10 @@ public class ExportByEmail extends Activity {
 
         actionBar.show();
 
+
         emailHelper = new EmailHelper(ExportByEmail.this);
         dbHelper = new DBHelper(ExportByEmail.this,DBNAME,null,1);
+        otherUtils = new OtherUtils();
 
 
         exportLayoutLL = (LinearLayout)findViewById(R.id.export_layout_LL);
@@ -72,13 +79,27 @@ public class ExportByEmail extends Activity {
         exportBTN = (Button)findViewById(R.id.export_btn);
 
 
+        //private String delete_all, really_delete_all, error, email_format_error,ok,export_success,export_failed,no_email_client;
+
+        delete_all = getResources().getString(R.string.delete_all);
+        really_delete_all = getResources().getString(R.string.really_delete_all);
+        error = getResources().getString(R.string.error);
+        email_format_error = getResources().getString(R.string.email_format_error);
+        ok = getResources().getString(R.string.ok);
+        export_success = getResources().getString(R.string.export_success);
+        export_failed = getResources().getString(R.string.export_failed);
+        no_email_client = getResources().getString(R.string.no_email_client);
+        yes = getResources().getString(R.string.yes);
+        cancel = getResources().getString(R.string.cancel);
+        copy_to_root_failed = getResources().getString(R.string.copy_to_root_failed);
+
         exportBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 EmailAddress = emailET.getText().toString();
 
                 if(deleteAllCB.isChecked()){
-                    ShowDeletAllDialog("Delete all", "Really want to delete all?","Delete","Cancel",ExportByEmail.this);
+                    ShowDeletAllDialog(delete_all, really_delete_all,yes,cancel,ExportByEmail.this);
                 }else{
 
                 }
@@ -88,12 +109,21 @@ public class ExportByEmail extends Activity {
                     AsyncTaskExport mAsyncTaskExport = new AsyncTaskExport();
                     mAsyncTaskExport.execute();
                 }else{
-                    ShowOneBtnDialog("Email Format Error","Email Format Error.","OK",ExportByEmail.this);
+                    ShowOneBtnDialog(error,email_format_error,ok,ExportByEmail.this);
                 }
             }
         });
 
 
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        String languageSetup = JilizhangApplication.sharedPreferencesHelper.getString(JilizhangApplication.languageKey);
+        if(languageSetup!=null){
+            LocaleHelper.setLocale(this,languageSetup);
+        }
     }
 
     //check the email format
@@ -152,7 +182,7 @@ public class ExportByEmail extends Activity {
             String exportRes = dbHelper.exportCSV(db,ExportByEmail.this);
             //export successfully
             if(exportRes.substring(0,DBHelper.EXPORT_SUCCESS.length()).equals(DBHelper.EXPORT_SUCCESS)){
-                String filename = exportRes.substring(DBHelper.EXPORT_SUCCESS.length()+1);
+                filename = exportRes.substring(DBHelper.EXPORT_SUCCESS.length()+1);
                 Log.d(TAG,filename);
                 if(!EmailAddress.equals("") || !EmailAddress.equals(null)){
                     if(emailHelper.sendEmail(EmailAddress,filename)){
@@ -174,15 +204,17 @@ public class ExportByEmail extends Activity {
         protected void onPostExecute(Integer result) {
             showProcessBar(exportLayoutLL,exportingPB,false);
             if(result == (ExportByEmail.this.SUCCESS)) {
-                ShowOneBtnDialog("Exported successfully","Exported successfully.","OK",ExportByEmail.this);
+                ShowOneBtnDialog(export_success,export_success,ok,ExportByEmail.this);
                 //ExportByEmail.this.finish();
             }else if(result==(ExportByEmail.this.EMAIL_FAILED)){
-                ShowOneBtnDialog("Email failed","There is no email client installed." +
-                        "You can access to the exported file under the directory of the app.","OK",ExportByEmail.this);
+                //ShowOneBtnDialog(export_failed,no_email_client,ok,ExportByEmail.this);
+                ShowCopyToRootDialog(export_failed,no_email_client,ok,cancel,ExportByEmail.this,filename);
+
+
             }else if(result==(ExportByEmail.this.DB_EXPORT_FAILED)){
-                ShowOneBtnDialog("Exported failed","Exported failed,you can try again.","OK",ExportByEmail.this);
+                ShowOneBtnDialog(export_failed,export_failed,ok,ExportByEmail.this);
             }else if(result==(ExportByEmail.this.EXPORT_FAILED)){
-                ShowOneBtnDialog("Exported failed","Exported failed,you can try again.","OK",ExportByEmail.this);
+                ShowOneBtnDialog(export_failed,export_failed,ok,ExportByEmail.this);
             }
 
         }
@@ -225,17 +257,41 @@ public class ExportByEmail extends Activity {
         alertDialog.create().show();
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.tab_actionbar_manu, menu);
-
-        MenuItem item = menu.findItem(R.id.action_add_new);
-        item.setVisible(false);
-        this.invalidateOptionsMenu();
-        return super.onCreateOptionsMenu(menu);
+    public void ShowCopyToRootDialog(String title, String Message, String BtnPosTxt, String BtnNegTxt, final Context mContext,final String filename){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
+        alertDialog.setTitle(title);
+        alertDialog.setMessage(Message);
+        //build two button dialog for delete all
+        alertDialog.setPositiveButton(BtnPosTxt, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                try {
+                    otherUtils.copyFileToRoot(mContext,filename);
+                } catch (IOException e) {
+                    dialog.dismiss();
+                    ShowOneBtnDialog(export_failed,copy_to_root_failed,ok,ExportByEmail.this);
+                    e.printStackTrace();
+                }
+            }
+        });
+        alertDialog.setNegativeButton(BtnNegTxt, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });alertDialog.create().show();
     }
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.tab_actionbar_manu, menu);
+//
+//        MenuItem item = menu.findItem(R.id.action_add_new);
+//        item.setVisible(false);
+//        this.invalidateOptionsMenu();
+//        return super.onCreateOptionsMenu(menu);
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

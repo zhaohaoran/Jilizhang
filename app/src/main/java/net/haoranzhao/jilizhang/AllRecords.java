@@ -19,19 +19,21 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import net.haoranzhao.jilizhang.util.DBHelper;
+import net.haoranzhao.jilizhang.util.LocaleHelper;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.haoranzhao.jilizhang.util.DBHelper;
-
 
 public class AllRecords extends Activity {
     private List<Map<String, Object>> mData;
     private ListView lv;
     private TextView Txtv,TotalBalanceTv;
+    private String in, out;
     DBHelper dbHelper;
     TextView recordAmount;
     MyAdapter adapter;
@@ -45,6 +47,7 @@ public class AllRecords extends Activity {
         setContentView(R.layout.activity_all_records);
 
         recordAmount = (TextView)findViewById(R.id.recordAmount);
+
 
         dbHelper = new DBHelper(AllRecords.this,DBNAME,null,1);
 
@@ -69,12 +72,20 @@ public class AllRecords extends Activity {
         Log.e("msg", time);
        // long time = date.getTime();
 
+        in = getResources().getString(R.string.in);
+        out = getResources().getString(R.string.out);
+
 
     }
 
     @Override
     public void onResume(){
         super.onResume();
+
+            String languageSetup = JilizhangApplication.sharedPreferencesHelper.getString(JilizhangApplication.languageKey);
+            if(languageSetup!=null){
+                LocaleHelper.setLocale(this,languageSetup);
+            }
 
         List<String> fileList = new ArrayList<String>();
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
@@ -116,12 +127,12 @@ public class AllRecords extends Activity {
 
             if(0==ifFromMe){
                 sumBD = sumBD.add(next);
-                amountStr = "In "+amountStr;
+                amountStr = in+amountStr;
                 //recordAmount.setTextColor(Color.GREEN);
             }
             else if(1==ifFromMe){
                 sumBD = sumBD.subtract(next);
-                amountStr = "Out "+amountStr;
+                amountStr = out+amountStr;
                 //recordAmount.setTextColor(Color.RED);
             }
 
@@ -135,12 +146,16 @@ public class AllRecords extends Activity {
 
         TotalBalanceTv = (TextView)findViewById(R.id.totalBalance_TV);
 
+        String your_total_pos = getResources().getString(R.string.your_total_balance);
+        String your_total_neg = getResources().getString(R.string.your_total_balance_negative);
+
+
         if (0 < sumBD.signum()) {
-            TotalBalanceTv.setText("Your total balance is $" + sumBD.abs());
+            TotalBalanceTv.setText(your_total_pos + sumBD.abs());
         } else if (0 > sumBD.signum()) {
-            TotalBalanceTv.setText("Your total balance is -$" + sumBD.abs());
+            TotalBalanceTv.setText(your_total_neg + sumBD.abs());
         } else {
-            TotalBalanceTv.setText("Your total balance is $" + sumBD.abs());
+            TotalBalanceTv.setText(your_total_pos + sumBD.abs());
         }
 
 
@@ -269,14 +284,20 @@ public class AllRecords extends Activity {
             idStr = (String)mData.get(position).get("id");
             id = Integer.parseInt(idStr);
 
+            String really_delete = getResources().getString(R.string.really_delete);
+            String delete = getResources().getString(R.string.delete);
+            String yes = getResources().getString(R.string.yes);
+            String cancel = getResources().getString(R.string.cancel);
+
+
             new AlertDialog.Builder(AllRecords.this)
         /* 弹出窗口的最上头文字 */
-                    .setTitle("")
+                    .setTitle(delete)
         /* 设置弹出窗口的图式 */
                     .setIcon(R.drawable.trash_bin)
         /* 设置弹出窗口的信息 */
-                    .setMessage("Really want to delete？")
-                    .setPositiveButton("Yes",
+                    .setMessage(really_delete)
+                    .setPositiveButton(yes,
                             new DialogInterface.OnClickListener() {
                                 public void onClick(
                                         DialogInterface dialoginterface,
@@ -324,12 +345,12 @@ public class AllRecords extends Activity {
 
                                         if(0==ifFromMe){
                                             sumBD = sumBD.add(next);
-                                            amountStr = "In "+amountStr;
+                                            amountStr = in+amountStr;
                                             //recordAmount.setTextColor(Color.GREEN);
                                         }
                                         else if(1==ifFromMe){
                                             sumBD = sumBD.subtract(next);
-                                            amountStr = "Out "+amountStr;
+                                            amountStr = out+amountStr;
                                             //recordAmount.setTextColor(Color.RED);
                                         }
 
@@ -344,13 +365,18 @@ public class AllRecords extends Activity {
 
                                     TotalBalanceTv = (TextView)findViewById(R.id.totalBalance_TV);
 
+                                    String your_total_pos = getResources().getString(R.string.your_total_balance);
+                                    String your_total_neg = getResources().getString(R.string.your_total_balance_negative);
+
+
                                     if (0 < sumBD.signum()) {
-                                        TotalBalanceTv.setText("Your total balance is $" + sumBD.abs());
+                                        TotalBalanceTv.setText(your_total_pos + sumBD.abs());
                                     } else if (0 > sumBD.signum()) {
-                                        TotalBalanceTv.setText("Your total balance is -$" + sumBD.abs());
+                                        TotalBalanceTv.setText(your_total_neg + sumBD.abs());
                                     } else {
-                                        TotalBalanceTv.setText("Your total balance is $" + sumBD.abs());
+                                        TotalBalanceTv.setText(your_total_pos + sumBD.abs());
                                     }
+
 
 
                                     mData = list;
@@ -360,7 +386,7 @@ public class AllRecords extends Activity {
                                 }
                             })
         /* 设置弹出窗口的返回事件 */
-                    .setNegativeButton("cancel",
+                    .setNegativeButton(cancel,
                             new DialogInterface.OnClickListener() {
                                 public void onClick(
                                         DialogInterface dialoginterface,

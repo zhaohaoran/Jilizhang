@@ -10,8 +10,6 @@ import android.os.Bundle;
 import android.text.format.Time;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,27 +27,28 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import net.haoranzhao.jilizhang.util.DBHelper;
+import net.haoranzhao.jilizhang.util.LocaleHelper;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-
-import net.haoranzhao.jilizhang.util.DBHelper;
 
 
 public class AddRecord extends Activity {
 
     public static final String DBNAME = "jilizhang.db";
 
-    Button saveBtn;
-    EditText personNameEditTxt;
-    EditText amountEditTxt;
-    Spinner selectPersonSpinner;
-    RadioGroup fromWhomRG;
-    RadioButton noFromMeRB;
-    RadioButton fromMeRB;
-    CheckBox addNewCheckBox;
-    TextView addNewPersonTxt;
-    TextView chooseAPersonTxt;
+    private Button saveBtn;
+    private EditText personNameEditTxt;
+    private EditText amountEditTxt;
+    private Spinner selectPersonSpinner;
+    private RadioGroup fromWhomRG;
+    private RadioButton noFromMeRB;
+    private RadioButton fromMeRB;
+    private CheckBox addNewCheckBox;
+    private TextView addNewPersonTxt;
+    private TextView chooseAPersonTxt;
 
     String str;
 
@@ -72,6 +71,8 @@ public class AddRecord extends Activity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         actionBar.show();
+
+        //LocaleHelper.onCreate(this, Locale.getDefault().toString());
 
         dbHelper = new DBHelper(AddRecord.this,DBNAME,null,1);
 
@@ -130,7 +131,8 @@ public class AddRecord extends Activity {
                     AddRecord.this.finish();
 
                 }catch (NumberFormatException e){
-                    Toast.makeText(getApplicationContext(), "Amount format error, please have check.",
+                    String amout_format_error = getResources().getString(R.string.toast_amout_format_error);
+                    Toast.makeText(getApplicationContext(), amout_format_error,
                             Toast.LENGTH_SHORT).show();
                 }
 
@@ -158,7 +160,10 @@ public class AddRecord extends Activity {
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
                 str=parent.getItemAtPosition(position).toString();
-                Toast.makeText(getApplicationContext(), str+" selected",
+
+                String selected = getResources().getString(R.string.toast_name_select);
+
+                Toast.makeText(getApplicationContext(), str+selected,
                         Toast.LENGTH_SHORT).show();            }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -204,15 +209,18 @@ public class AddRecord extends Activity {
                         //更新文本内容，以符合选中项
                         //tv.setText("您的性别是：" + rb.getText());
 
+
                         if(radioButtonId == R.id.noFromMeRB){
                             ifFromMe = 0;
-                            Toast.makeText(getApplicationContext(), "'he/she gives me' selected",
+                            String he_give_me_selected = getResources().getString(R.string.toast_he_give_me_selected);
+                            Toast.makeText(getApplicationContext(), he_give_me_selected,
                                     Toast.LENGTH_SHORT).show();
 
                         }
                         else if(radioButtonId == R.id.fromMeRB){
                             ifFromMe = 1;
-                            Toast.makeText(getApplicationContext(), "'I give him/her' selected",
+                            String I_give_him_selected = getResources().getString(R.string.toast_I_give_him_selected);
+                            Toast.makeText(getApplicationContext(),I_give_him_selected,
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -223,6 +231,14 @@ public class AddRecord extends Activity {
         amountEditTxt = (EditText)findViewById(R.id.amountEditTxt);
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        String languageSetup = JilizhangApplication.sharedPreferencesHelper.getString(JilizhangApplication.languageKey);
+        if(languageSetup!=null){
+            LocaleHelper.setLocale(this,languageSetup);
+        }
+    }
 
 
     public class MyAdapterSpinner extends BaseAdapter {
@@ -266,16 +282,16 @@ public class AddRecord extends Activity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.tab_actionbar_manu, menu);
-
-        MenuItem item = menu.findItem(R.id.action_add_new);
-        item.setVisible(false);
-        this.invalidateOptionsMenu();
-        return super.onCreateOptionsMenu(menu);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.tab_actionbar_manu, menu);
+//
+//        MenuItem item = menu.findItem(R.id.action_add_new);
+//        item.setVisible(false);
+//        this.invalidateOptionsMenu();
+//        return super.onCreateOptionsMenu(menu);
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -1,0 +1,54 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="net.haoranzhao.jilizhang.AddRecord"
+    android:orientation="vertical"
+    android:paddingRight="60sp"
+    android:paddingLeft="60sp"
+    android:paddingTop="30sp"
+    android:layout_gravity="center">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/No1"
+                android:textSize="20sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/pick_language"
+                android:id="@+id/chooseALanguageTxt"
+                android:textSize="20sp"/>
+        </LinearLayout>
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/selectLanguageSpinner"
+            android:spinnerMode="dialog"
+            android:textSize="15sp"/>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/savebtn"
+                android:layout_width="50sp"
+                android:layout_height="50sp"
+                android:background="@drawable/save"
+                android:layout_alignParentRight="true"
+                android:paddingRight="30sp"
+                />
+
+        </RelativeLayout>
+
+
+</LinearLayout>

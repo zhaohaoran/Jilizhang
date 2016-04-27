@@ -1,12 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Transaction Recorder</string>
+    <string name="app_name">Transaction Tracer</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_all_records">All Records</string>
     <string name="title_activity_by_person">Check by Person</string>
     <string name="title_activity_add_record">Add new record</string>
-    <string name="title_activity_export_by_email">ExportByEmail</string>
-    <string name="title_activity_backup_google_drive">BackupGoogleDrive</string>
+    <string name="title_activity_export_by_email">Export By Email</string>
+    <string name="title_activity_cloud_backup">Cloud Backup</string>
+
+
+    <string name="no_record_yet">No record yet...</string>
+    <string name="pick_a_person">Pick a person: </string>
+    <string name="e_g_Name_owe_you_amount">e.g.Mike owe you：$1000.00</string>
+    <string name="E_mail_to_send_records_to">E-mail to send records to: </string>
+    <string name="Input_the_email_here">Input the email here.</string>
+    <string name="Check_to_delete_all_records_after_export">Check to delete all records after export.</string>
+    <string name="e_g_Your_total_balance_is_amount">e.g.Your total balance is：$1000.00</string>
+    <string name="No1">1. </string>
+    <string name="No2">2. </string>
+    <string name="No3">3. </string>
+    <string name="No4">4. </string>
+    <string name="Add_new_person">Add new person: </string>
+    <string name="e_g_Name">e.g. Mike</string>
+    <string name="skipping_step">*If the person already existed, skip this step</string>
+    <string name="Choose_a_direction">Choose a direction: </string>
+    <string name="he_she_gives_me">he/she gives me</string>
+    <string name="I_give_him_her">I give him/her</string>
+    <string name="Input_amount">Input amount: </string>
+    <string name="e_g_amount">e.g. 500</string>
+
+    <!--EmailHelper.java-->
+    <string name="Sending_e_mail">Sending Email... </string>
+    <string name="mail_subject">Transaction records exported from Transaction Tracer.</string>
+    <string name="mail_text">The attached is the excel file of all records. \n +
+                                P.S. For the iffromme colomn in the table, 0 means someone gives you, 1 means you give out to someone.\n\n"+
+                                Thanks,\n +
+                                Transaction Tracker</string>
+
+    <!--AddRecord.java-->
+    <string name="toast_amout_format_error">Amount format error, please have check.</string>
+    <string name="toast_name_select"> selected</string>
+    <string name="toast_he_give_me_selected">\'he/she gives me\' selected</string>
+    <string name="toast_I_give_him_selected">\'I give him/her\' selected</string>
+
+    <!--Tabmain.java-->
+    <string name="tab_indicator_all_records">All Records</string>
+    <string name="tab_indicator_by_person">Check by Person</string>
+
+    <!--AllRecord.java-->
+    <string name="your_total_balance">Your total balance is $</string>
+    <string name="your_total_balance_negative">Your total balance is -$</string>
+    <string name="really_delete">Really want to delete this record?</string>
+    <string name="delete">Delete</string>
+    <string name="yes">yes</string>
+    <string name="cancel">cancel</string>
+    <string name="in">In </string>
+    <string name="out">Out </string>
+
+    <!--ByPerson.java-->
+    <string name="$">$</string>
+    <string name="you_owe">You owe </string>
+    <string name="owe_you"> owe you</string>
+    <string name="mutually_do_not_owe"> and you mutually do not owe.</string>
+
+
+    <!--ExportByEmail.java-->
+    <string name="delete_all">Delete All</string>
+    <string name="really_delete_all">Really want to delete all records?</string>
+    <string name="error">Error</string>
+    <string name="email_format_error">Email format error!</string>
+    <string name="ok">OK</string>
+    <string name="export_success">Export Successfully!</string>
+    <string name="export_failed">Export Failed</string>
+    <string name="no_email_client">There is no Email client installed.\n
+                                   Save the file to the root directory of you phone?
+                                   Then you can access to it with file system.</string>
+    <string name="copy_to_root_failed">Save to root directory failed.</string>
+    <string name="title_activity_language_setup">Settings</string>
+
+    <!--SetupActivity-->
+    <string name="pick_language">Pick language: </string>
+    <string-array name="language_array_readable">
+        <item>English</item>
+        <item>简体中文</item>
+    </string-array>
+    <string-array name="language_array_system">
+        <item>en</item>
+        <item>zh</item>
+    </string-array>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+
 
 </resources>

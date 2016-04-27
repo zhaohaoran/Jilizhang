@@ -86,7 +86,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 DBHelper.TBNAME, null, null);
     }
 
-    /*
+    /**
+     * @author: Haoran Zhao
      * added 4/5/16
      */
     public String exportCSV(SQLiteDatabase db, Context mContext){
@@ -102,7 +103,6 @@ public class DBHelper extends SQLiteOpenHelper {
             if (!outputDir.exists()) {
                 outputDir.mkdir();
             }
-
 
             long time= System.currentTimeMillis();
             Date datetime = new Date(time);
