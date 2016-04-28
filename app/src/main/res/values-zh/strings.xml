@@ -58,4 +58,16 @@
     <string name="tab_indicator_all_records">所有记录</string>
     <string name="tab_indicator_by_person">按人查找</string>
     <string name="title_activity_language_setup">设置</string>
+
+    <!--SetupActivity-->
+    <string-array
+        name="language_array_readable">
+        <item>English</item>
+        <item>简体中文</item>
+    </string-array>
+    <string-array
+        name="language_array_system">
+        <item>en</item>
+        <item>zh</item>
+    </string-array>
 </resources>

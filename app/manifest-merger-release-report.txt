@@ -13,11 +13,11 @@ ADDED from AndroidManifest.xml:2:1
 	android:versionCode
 		INJECTED from AndroidManifest.xml:0:0
 		INJECTED from AndroidManifest.xml:0:0
-uses-permission#android.permission.WRIT_STORAGE
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
 ADDED from AndroidManifest.xml:5:5
 	android:name
 		ADDED from AndroidManifest.xml:5:22
-uses-permission#android.permission.READ_STORAGE
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
 ADDED from AndroidManifest.xml:6:5
 	android:name
 		ADDED from AndroidManifest.xml:6:22
@@ -29,82 +29,90 @@ MERGED from com.google.android.gms:play-services-appindexing:8.1.0:19:5
 MERGED from com.google.android.gms:play-services-basement:8.1.0:20:5
 MERGED from com.android.support:support-v4:22.2.0:22:5
 	android:label
-		ADDED from AndroidManifest.xml:11:9
-	android:allowBackup
-		ADDED from AndroidManifest.xml:9:9
-	android:icon
-		ADDED from AndroidManifest.xml:10:9
-	android:theme
 		ADDED from AndroidManifest.xml:12:9
+	android:allowBackup
+		ADDED from AndroidManifest.xml:10:9
+	android:icon
+		ADDED from AndroidManifest.xml:11:9
+	android:theme
+		ADDED from AndroidManifest.xml:13:9
+	android:name
+		ADDED from AndroidManifest.xml:9:9
 provider#android.support.v4.content.FileProvider
-ADDED from AndroidManifest.xml:13:9
+ADDED from AndroidManifest.xml:14:9
 	android:authorities
-		ADDED from AndroidManifest.xml:15:13
-	android:grantUriPermissions
-		ADDED from AndroidManifest.xml:17:13
-	android:exported
 		ADDED from AndroidManifest.xml:16:13
+	android:grantUriPermissions
+		ADDED from AndroidManifest.xml:18:13
+	android:exported
+		ADDED from AndroidManifest.xml:17:13
 	android:name
-		ADDED from AndroidManifest.xml:14:13
+		ADDED from AndroidManifest.xml:15:13
 meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from AndroidManifest.xml:18:13
+ADDED from AndroidManifest.xml:19:13
 	android:resource
+		ADDED from AndroidManifest.xml:21:17
+	android:name
 		ADDED from AndroidManifest.xml:20:17
-	android:name
-		ADDED from AndroidManifest.xml:19:17
 activity#net.haoranzhao.jilizhang.TabMain
-ADDED from AndroidManifest.xml:23:9
+ADDED from AndroidManifest.xml:24:9
 	android:label
+		ADDED from AndroidManifest.xml:26:13
+	android:name
 		ADDED from AndroidManifest.xml:25:13
-	android:name
-		ADDED from AndroidManifest.xml:24:13
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from AndroidManifest.xml:26:13
+ADDED from AndroidManifest.xml:27:13
 action#android.intent.action.MAIN
-ADDED from AndroidManifest.xml:27:17
+ADDED from AndroidManifest.xml:28:17
 	android:name
-		ADDED from AndroidManifest.xml:27:25
+		ADDED from AndroidManifest.xml:28:25
 category#android.intent.category.LAUNCHER
-ADDED from AndroidManifest.xml:29:17
+ADDED from AndroidManifest.xml:30:17
 	android:name
-		ADDED from AndroidManifest.xml:29:27
+		ADDED from AndroidManifest.xml:30:27
 activity#net.haoranzhao.jilizhang.AllRecords
-ADDED from AndroidManifest.xml:32:9
+ADDED from AndroidManifest.xml:33:9
 	android:label
+		ADDED from AndroidManifest.xml:35:13
+	android:name
 		ADDED from AndroidManifest.xml:34:13
-	android:name
-		ADDED from AndroidManifest.xml:33:13
 activity#net.haoranzhao.jilizhang.ByPerson
-ADDED from AndroidManifest.xml:35:9
+ADDED from AndroidManifest.xml:36:9
 	android:label
+		ADDED from AndroidManifest.xml:38:13
+	android:name
 		ADDED from AndroidManifest.xml:37:13
-	android:name
-		ADDED from AndroidManifest.xml:36:13
 activity#net.haoranzhao.jilizhang.AddRecord
-ADDED from AndroidManifest.xml:38:9
+ADDED from AndroidManifest.xml:39:9
 	android:label
-		ADDED from AndroidManifest.xml:40:13
+		ADDED from AndroidManifest.xml:41:13
 	android:name
-		ADDED from AndroidManifest.xml:39:13
+		ADDED from AndroidManifest.xml:40:13
 meta-data#com.google.android.gms.version
-ADDED from AndroidManifest.xml:45:9
+ADDED from AndroidManifest.xml:46:9
 MERGED from com.google.android.gms:play-services-basement:8.1.0:21:9
 	android:value
+		ADDED from AndroidManifest.xml:48:13
+	android:name
 		ADDED from AndroidManifest.xml:47:13
-	android:name
-		ADDED from AndroidManifest.xml:46:13
 activity#net.haoranzhao.jilizhang.ExportByEmail
-ADDED from AndroidManifest.xml:49:9
+ADDED from AndroidManifest.xml:50:9
 	android:label
+		ADDED from AndroidManifest.xml:52:13
+	android:name
 		ADDED from AndroidManifest.xml:51:13
-	android:name
-		ADDED from AndroidManifest.xml:50:13
-activity#net.haoranzhao.jilizhang.BackupGoogleDrive
-ADDED from AndroidManifest.xml:52:9
+activity#net.haoranzhao.jilizhang.CloudBackup
+ADDED from AndroidManifest.xml:53:9
 	android:label
-		ADDED from AndroidManifest.xml:54:13
+		ADDED from AndroidManifest.xml:55:13
 	android:name
-		ADDED from AndroidManifest.xml:53:13
+		ADDED from AndroidManifest.xml:54:13
+activity#net.haoranzhao.jilizhang.SetupActivity
+ADDED from AndroidManifest.xml:56:9
+	android:label
+		ADDED from AndroidManifest.xml:58:13
+	android:name
+		ADDED from AndroidManifest.xml:57:13
 uses-sdk
 INJECTED from AndroidManifest.xml:0:0 reason: use-sdk injection requested
 MERGED from com.android.support:appcompat-v7:21.0.3:15:5
