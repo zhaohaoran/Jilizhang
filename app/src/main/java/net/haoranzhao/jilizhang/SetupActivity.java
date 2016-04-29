@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,7 +29,7 @@ public class SetupActivity extends Activity {
     private List<String> languagesSystem;
 
     private Spinner selectLanguageSpinner;
-    private Button saveBtn;
+    private ImageButton saveBtn;
 
     private String selectedLang;
     private String[] languagesArray;
@@ -99,7 +99,7 @@ public class SetupActivity extends Activity {
         }
 
 
-        saveBtn = (Button)findViewById(R.id.savebtn);
+        saveBtn = (ImageButton)findViewById(R.id.savebtn);
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -155,10 +155,10 @@ public class SetupActivity extends Activity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater _LayoutInflater=LayoutInflater.from(mContext);
-            convertView=_LayoutInflater.inflate(R.layout.spinner_item, null);
+            convertView=_LayoutInflater.inflate(R.layout.spinner_item_no_image, null);
             if(convertView!=null)
             {
-                TextView _TextView1=(TextView)convertView.findViewById(R.id.personNameSpinnerItem);
+                TextView _TextView1=(TextView)convertView.findViewById(R.id.noImageSpinnerItem);
                 _TextView1.setText(mList.get(position));
                 //_TextView1.setSelected(true);
             }

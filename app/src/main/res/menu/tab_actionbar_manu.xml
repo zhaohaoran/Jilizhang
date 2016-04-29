@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"  
-    xmlns:tools="http://schemas.android.com/tools"  >  
-  
-    <item  
-        android:id="@+id/action_add_new"  
-        android:showAsAction="never"
-        android:title="@string/title_activity_add_record"/>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_add_new"
+        android:showAsAction="ifRoom"
+        android:title="@string/title_activity_add_record"
+        android:icon="@drawable/add_btn_36_36"/>
 
     <item
         android:id="@+id/action_export_by_email"

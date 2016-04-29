@@ -26,13 +26,12 @@
 
 
     <Button
-        android:layout_width="20sp"
-        android:layout_height="20sp"
+        android:layout_width="30dip"
+        android:layout_height="30dip"
         android:background="@drawable/delete"
         android:layout_centerVertical="true"
         android:id="@+id/deleteBtn"
         android:layout_alignParentRight="true"
-
         />
 
     <LinearLayout
@@ -50,6 +49,7 @@
             android:layout_height="wrap_content"
             android:singleLine="true"
             android:id="@+id/personName"
+            android:text="fake_name"
             android:maxWidth="150dip"
             android:ellipsize="marquee"
             android:marqueeRepeatLimit ="marquee_forever"

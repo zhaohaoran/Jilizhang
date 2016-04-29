@@ -1,13 +1,11 @@
 package net.haoranzhao.jilizhang;
 
-import android.app.ActionBar;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.Window;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 
@@ -20,12 +18,11 @@ public class TabMain extends TabActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_tab_main);
 
-        ActionBar actionBar = getActionBar();
+        //ActionBar actionBar = getActionBar();
         //getOverflowMenu();
-        actionBar.show();
+        //actionBar.show();
 
         setTitle(getResources().getString(R.string.app_name));
 

@@ -4,8 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ExportByEmail">
 
@@ -19,18 +17,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minHeight="60dip"
         android:orientation="vertical"
-        android:paddingRight="60sp"
-        android:paddingLeft="60sp"
-        android:paddingTop="30sp"
-        android:layout_gravity="center">
+        android:gravity="center_vertical"
+        android:paddingRight="30dip"
+        android:paddingLeft="30dip">
+
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/E_mail_to_send_records_to"
+            android:textSize="20sp"
             />
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/email_ET"
             android:singleLine="true"
@@ -38,7 +39,7 @@
             android:hint="@string/Input_the_email_here"/>
 
         <CheckBox
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/deleteAllRecord_CB"
             android:text="@string/Check_to_delete_all_records_after_export"/>
@@ -48,21 +49,27 @@
 
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="60dip"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:paddingLeft="30dip"
+            android:paddingRight="30dip"
+            android:layout_margin="10dip">
 
-        <Button
-            android:id="@+id/export_btn"
-            android:layout_width="50sp"
-            android:layout_height="50sp"
-            android:background="@drawable/save"
-            android:layout_alignParentRight="true"
-            android:paddingRight="30sp"
+            <ImageButton
+                android:layout_gravity="center"
+                android:id="@+id/export_btn"
+                android:layout_width="match_parent"
+                android:layout_height="40dip"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_check_black_24dp"
+                android:background="#C0CFE8"/>
 
-            />
-
-    </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
 
 

@@ -12,9 +12,9 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
@@ -31,7 +31,7 @@ public class ExportByEmail extends Activity {
     private CheckBox deleteAllCB;
     private EditText emailET;
     private ProgressBar exportingPB;
-    private Button exportBTN;
+    private ImageButton exportBTN;
 
     private String EmailAddress;
     private EmailHelper emailHelper;
@@ -76,7 +76,7 @@ public class ExportByEmail extends Activity {
         // do this in next version
         exportingPB = (ProgressBar)findViewById(R.id.exporting_PB);
         exportingPB.setVisibility(View.INVISIBLE);
-        exportBTN = (Button)findViewById(R.id.export_btn);
+        exportBTN = (ImageButton)findViewById(R.id.export_btn);
 
 
         //private String delete_all, really_delete_all, error, email_format_error,ok,export_success,export_failed,no_email_client;

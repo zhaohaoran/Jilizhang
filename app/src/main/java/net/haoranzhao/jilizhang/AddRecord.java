@@ -13,14 +13,13 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -39,7 +38,7 @@ public class AddRecord extends Activity {
 
     public static final String DBNAME = "jilizhang.db";
 
-    private Button saveBtn;
+    private ImageButton saveBtn;
     private EditText personNameEditTxt;
     private EditText amountEditTxt;
     private Spinner selectPersonSpinner;
@@ -63,7 +62,7 @@ public class AddRecord extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+        //getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_add_record);
 
         ActionBar actionBar = getActionBar();
@@ -104,7 +103,7 @@ public class AddRecord extends Activity {
             }
         });
 
-        saveBtn = (Button)findViewById(R.id.savebtn);
+        saveBtn = (ImageButton)findViewById(R.id.savebtn);
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
