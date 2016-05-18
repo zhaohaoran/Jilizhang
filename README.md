@@ -3,26 +3,21 @@
 **App Name** is basically used for recording transactions..
 
 #### Screenshot
-![Screenshot Android](http://url/screenshot-appname-android.png "screenshot Android")
+![Screenshot Android](https://lh3.googleusercontent.com/qVAqzo-E2hdvBSOB5G6YG-BOcEBLvx3eP0w_sKkWND7cD3YqsjAGLBLBuUa7fXt7rDKl=h900 "screenshot Android")
 
 #### App Stores
 <!-- edit this image location -->
-[![Get it on Google Play](https://raw.github.com/repat/README-template/master/googleplay.png)](https://play.google.com/store/apps/details?id=com.package.path)
-
-<!-- edit this image location -->
-[![Download on the AppStore](https://raw.github.com/repat/README-template/master/appstore.png)](https://itunes.apple.com/app/id123456)
+[![Get it on Google Play](https://raw.github.com/repat/README-template/master/googleplay.png)](https://play.google.com/store/apps/details?id=net.haoranzhao.jilizhang)
 
 #### QR Market Links
-![QR-Code Android](http://url/qrcode-appname-android.png)
-
-![QR-Code iOS](http://url/qrcode-appname-ios.png)
+![QR-Code Android](<img src='https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dnet.haoranzhao.jilizhang&chs=180x180&choe=UTF-8&chld=L|2' rel='nofollow' alt='qr code'><a href='http://www.qrcode-generator.de' border='0' style='cursor:default'  rel='nofollow'></a>)
 
 ## Tests
 #### Works on
-* Devices it works with
+* Devices it's built and tested on is Samsung Galax S5
 
 #### Does not work on
-* Devices it doesn't work with
+* Not tested throughly, if you found any device this app doesn't work, please tell me.
 
 ## Contributors
 ### Artwork
