@@ -10,7 +10,7 @@
 [![Get it on Google Play](https://raw.github.com/repat/README-template/master/googleplay.png)](https://play.google.com/store/apps/details?id=net.haoranzhao.jilizhang)
 
 #### QR Market Links
-![QR-Code Android](<img src='https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dnet.haoranzhao.jilizhang&chs=180x180&choe=UTF-8&chld=L|2' rel='nofollow' alt='qr code'><a href='http://www.qrcode-generator.de' border='0' style='cursor:default'  rel='nofollow'></a>)
+![QR-Code Android](https://drive.google.com/file/d/0B3pRbanF4JdPd2stNmJuamFpejQ/view?usp=sharing)
 
 ## Tests
 #### Works on
