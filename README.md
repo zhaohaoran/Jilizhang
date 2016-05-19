@@ -36,4 +36,3 @@
 * e-mail: hr100.zhao@gmail.com
 * Linkedin: https://www.linkedin.com/in/haoran-zhao-197975a9
 
-[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=username&url=https://github.com/username/appname&title=appname&language=&tags=github&category=software) 
