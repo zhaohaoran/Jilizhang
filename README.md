@@ -1,6 +1,6 @@
 # Jilizhang
 ======
-**App Name** is basically used for recording transactions..
+**App Name** is basically used for recording transactions. And the app supports English and Simplified Chinese.
 
 #### Screenshot
 ![Screenshot Android](https://lh3.googleusercontent.com/qVAqzo-E2hdvBSOB5G6YG-BOcEBLvx3eP0w_sKkWND7cD3YqsjAGLBLBuUa7fXt7rDKl=h900 "screenshot Android")
