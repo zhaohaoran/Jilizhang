@@ -9,8 +9,6 @@
 <!-- edit this image location -->
 [![Get it on Google Play](https://raw.github.com/repat/README-template/master/googleplay.png)](https://play.google.com/store/apps/details?id=net.haoranzhao.jilizhang)
 
-#### QR Market Links
-![QR-Code Android](https://drive.google.com/file/d/0B3pRbanF4JdPd2stNmJuamFpejQ/view?usp=sharing)
 
 ## Tests
 #### Works on
@@ -20,35 +18,22 @@
 * Not tested throughly, if you found any device this app doesn't work, please tell me.
 
 ## Contributors
-### Artwork
-* Any credit to artists(music,images,...)
-
-### Contributors on GitHub
-* [Contributors](https://github.com/username/appname/graphs/contributors)
-
-### Translations
-* [Transifex](https://www.transifex.com/projects/p/appname/)
-
-### Third party libraries
-* see [LIBRARIES](https://github.com/username/appname/blob/master/LIBRARIES.md) files
 
 ## Permissions
-* Any permissions needed by the app
-
-## License 
-* see [LICENSE](https://github.com/username/appname/blob/master/LICENSE.md) file
+* read/write External Storage
 
 ## Version 
-* Version X.Y
+* Version 1.2.1
 
 ## How-to use this code
-* see [INSTRUCTIONS](https://github.com/username/appname/blob/master/INSTRUCTIONS.md) file
+* The code contains SQLite, Locale, File Provider and Actionbar. 
+* These parts can be regarded as samples.
+* The Database is not strictly following BCNF, but it's good enough for now.
 
 ## Contact
-#### Developer/Company
-* Homepage: 
-* e-mail: 
-* Twitter: [@twitterhandle](https://twitter.com/twitterhandle "twitterhandle on twitter")
-* other communication/social media
+#### Haoran Zhao
+* Homepage: haoranzhao.net
+* e-mail: hr100.zhao@gmail.com
+* Linkedin: https://www.linkedin.com/in/haoran-zhao-197975a9
 
 [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=username&url=https://github.com/username/appname&title=appname&language=&tags=github&category=software) 
